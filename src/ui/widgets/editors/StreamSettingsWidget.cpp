@@ -33,6 +33,7 @@ void StreamSettingsWidget::SetStreamObject(const Qv2ray::Models::StreamSettingsO
 
         {
             serverNameTxt->setText(stream.tlsSettings->serverName);
+            allowInsecureCB->setChecked(stream.tlsSettings->allowInsecure);
             disableSessionResumptionCB->setChecked(stream.tlsSettings->disableSessionResumption);
             disableSystemRoot->setChecked(stream.tlsSettings->disableSystemRoot);
             alpnTxt->setText(stream.tlsSettings->alpn->join("|"));
@@ -276,6 +277,11 @@ void StreamSettingsWidget::on_securityTypeCB_currentIndexChanged(int arg1)
 void StreamSettingsWidget::on_serverNameTxt_textEdited(const QString &arg1)
 {
     stream.tlsSettings->serverName = arg1.trimmed();
+}
+
+void StreamSettingsWidget::on_allowInsecureCB_stateChanged(int arg1)
+{
+    stream.tlsSettings->allowInsecure = arg1 == Qt::Checked;
 }
 
 void StreamSettingsWidget::on_disableSessionResumptionCB_stateChanged(int arg1)
