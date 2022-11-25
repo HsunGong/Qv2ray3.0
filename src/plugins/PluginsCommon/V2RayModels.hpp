@@ -279,12 +279,13 @@ namespace Qv2ray::Models
         struct TLSObject
         {
             Bindable<QString> serverName;
+            Bindable<bool> allowInsecure{ false };
             Bindable<bool> disableSessionResumption{ true };
             Bindable<bool> disableSystemRoot{ false };
             Bindable<QList<QString>> alpn;
             Bindable<QList<CertificateObject>> certificates;
-            QJS_COMPARE(TLSObject, serverName, disableSessionResumption, disableSystemRoot, alpn, certificates);
-            QJS_JSON(P(serverName, disableSessionResumption, disableSystemRoot, alpn, certificates))
+            QJS_COMPARE(TLSObject, serverName, allowInsecure, disableSessionResumption, disableSystemRoot, alpn, certificates);
+            QJS_JSON(P(serverName, allowInsecure, disableSessionResumption, disableSystemRoot, alpn, certificates))
         };
     } // namespace transfer
 
