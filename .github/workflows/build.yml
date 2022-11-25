@@ -1,18 +1,7 @@
 name: Build for Desktop
 
 on:
-  push:
-    branches:
-      - '**'
-    paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
-  pull_request:
-    paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
-  release:
-    types: [prereleased]
+  workflow_dispatch:
 
 defaults:
   run:
