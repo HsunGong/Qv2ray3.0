@@ -2,6 +2,7 @@ name: Build for Desktop
 
 on:
   workflow_dispatch:
+  push:
 
 defaults:
   run:
@@ -46,8 +47,7 @@ jobs:
         setup-python: false
     - name: install pre
       run: |
-        brew install pkg-config go grpc cmake v2ray openssl
-        brew install protobuf grpc ninja pkg-config openssl
+        brew install pkg-config grpc cmake v2ray openssl@3 protobuf ninja
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v10
       with:
@@ -56,6 +56,8 @@ jobs:
         runVcpkgInstall: true
   
     - name: Build
+      env:
+        PKG_CONFIG_PATH: /usr/local/opt/openssl@3/lib/pkgconfig
       run: |
         mkdir build; cd build
         cmake .. \
