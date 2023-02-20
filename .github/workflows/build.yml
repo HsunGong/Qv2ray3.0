@@ -21,21 +21,6 @@ jobs:
       matrix:
         config:
         - {
-            name: "Windows MSVC", artifact: "Windows",
-            os: windows-latest,
-            cc: "cl.exe", cxx: "cl.exe",
-            arch: "win64_msvc2019_64",
-            has_msvc: true,
-            has_release: true,
-            vcpkgTriplet: x64-windows,
-          }
-        - {
-            name: "Ubuntu", artifact: "Linux",
-            os: ubuntu-latest,
-            has_release: false,
-            vcpkgTriplet: x64-linux,
-          }
-        - {
             name: "macOS", artifact: "macOS",
             os: macos-latest,
             has_release: true,
@@ -59,7 +44,10 @@ jobs:
       with:
         version: 6.4.0
         setup-python: false
-
+    - name: install pre
+      run: |
+        brew install pkg-config go grpc cmake v2ray openssl
+  
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v10
       with:
