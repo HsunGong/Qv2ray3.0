@@ -47,7 +47,7 @@ jobs:
     - name: install pre
       run: |
         brew install pkg-config go grpc cmake v2ray openssl
-  
+        brew install protobuf grpc ninja pkg-config openssl
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v10
       with:
